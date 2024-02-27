@@ -39,11 +39,31 @@ class ViewController: UIViewController {
         UserDefaults.standard.set(dateField.text!, forKey: "birthday")
         
         //UserDefaults.standard.synchronize()
+        nameView.text = "Name: \(nameField.text!)"
+        dateView.text = "Birthday: \(dateField.text!)"
+        
+    }
+    
+    
+    @IBAction func deleteButton(_ sender: Any) {
+        
+        let storedName = UserDefaults.standard.object(forKey: "name")
+        let storedBirthday = UserDefaults.standard.object(forKey: "birthday")
         
         
-        nameView.text = "Name : \(nameField.text!)"
-        dateView.text = "Birthday : \(dateField.text!)"
+        if (storedName as? String) != nil {
+            UserDefaults.standard.removeObject(forKey: "name")
+            nameView.text = "Name: "
+            
+        }
         
+        if (storedBirthday as? String) != nil {
+            UserDefaults.standard.removeObject(forKey: "birthday")
+            dateView.text = "Birthday: "
+        }
+     
+        
+
 
     }
     
